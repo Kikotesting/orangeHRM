@@ -1,20 +1,14 @@
 package UtilityClasses;
-
 import io.github.bonigarcia.wdm.WebDriverManager;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
-
 
 public class setupCode {
     public WebDriver browser;
-    public Actions action = new Actions((browser));
+    /*public Actions action = new Actions((browser));*/
     public JavascriptExecutor j = (JavascriptExecutor) browser;
 
 
@@ -39,7 +33,7 @@ public class setupCode {
     }
 
     // ACTIONS elements
-    public void hoverElement(WebElement element){
+/*    public void hoverElement(WebElement element){
         action.moveToElement(element).build().perform();
     }
     public void clickElement(WebElement element){
@@ -56,7 +50,7 @@ public class setupCode {
     }
     public void dragAndDropElement(WebElement source, WebElement target){
         action.dragAndDrop(source, target).build().perform();
-    }
+    }*/
 
     // SCROLLING elements
     public void scrollToPixels(int pixels) {
