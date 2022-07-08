@@ -72,12 +72,28 @@ public class DashboardTests extends setupCode {
     @Test
     @Tag("Forgot password functionality")
     @Tag("AC-1 positive")
-    @DisplayName("Forgot password")
+    @DisplayName("Forgot password Link and elements")
     void testForgotPasswordLink(){
         actD = new DashboardPage(browser);
 
         actD.clickForgotPassLink();
+        actD.verifiedForgotPasswordForm();
     }
+    @Test
+    @Tag("Forgot password functionality")
+    @Tag("AC-2 positive")
+    @DisplayName("Reset password with valid credentials")
+    void testResetForgotPassword(){
+        actD = new DashboardPage(browser);
+        testForgotPasswordLink();
+        actD.clickForgotUsernameField();
+        actD.setForgotUsername("Admin");
+        actD.clickResetPasswordButton();
+        //actD.verifyMessageAfterResetPassword();
+    }
+
+
+
 
 
 }
