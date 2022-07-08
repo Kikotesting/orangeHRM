@@ -67,7 +67,7 @@ public class setupCode {
     }
 
     // CHECK visible elements
-    public void IsVisibleElement(WebElement element){
+    public void isVisibleElement(WebElement element){
         j.executeScript("document.getElementById('displayed-text').style.display='block';");
         //verify element is visible
         boolean trueVisible = element.isDisplayed();
