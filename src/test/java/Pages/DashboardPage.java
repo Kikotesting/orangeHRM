@@ -17,6 +17,9 @@ public class DashboardPage {
 
     @FindBy(xpath = "//*[@id=\"menu_pim_viewMyDetails\"]")
     WebElement menuMyInfo;
+    public void clickMenuMyInfo(){
+        menuMyInfo.click();
+    }
 
 
 
