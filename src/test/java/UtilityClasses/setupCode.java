@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.time.Duration;
+
 public class setupCode {
     public WebDriver browser;
     /*public Actions action = new Actions((browser));*/
@@ -17,11 +19,11 @@ public class setupCode {
     static void beforeAllTests(){
         WebDriverManager.chromedriver().setup();
     }
-
     @BeforeEach
-    void beforeEachTest() {
+    void beforeEachTest(){
         browser = new ChromeDriver();
         browser.manage().window().maximize();
+        browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
         browser.navigate().to("https://opensource-demo.orangehrmlive.com/");
     }
 

@@ -1,9 +1,8 @@
 package TestClasses;
 import Pages.LoginPage;
 import UtilityClasses.setupCode;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 import java.time.Duration;
 
@@ -15,54 +14,28 @@ public class TestsLoginPage extends setupCode {
     @DisplayName("User can login with valid credentials")
     public void testValidLogin(){
         actLP = new LoginPage(browser);
-        actLP.clickUsernameField();
-        actLP.setUsername("Admin");
-        actLP.clickPasswordField();
-        actLP.setPassword("admin123");
-        actLP.clickLoginButton();
-        actLP.verifiedLoggedUser();
+        actLP.executeValidLogin();
     }
-
     @Test
     @Tag("Login functionality")
     @DisplayName("User cannot login with invalid username and valid password")
     void testInvalidLoginUsername(){
         actLP = new LoginPage(browser);
-
-        actLP.clickUsernameField();
-        actLP.setUsername("Pesho");
-        actLP.clickPasswordField();
-        actLP.setPassword("admin123");
-        actLP.clickLoginButton();
-        actLP.checkInvalidMessage();
+        actLP.executeInvalidLoginUsername();
     }
-
     @Test
     @Tag("Login functionality")
     @DisplayName("User cannot login with valid username and invalid password")
     void testInvalidLoginPassword(){
         actLP = new LoginPage(browser);
-
-        actLP.clickUsernameField();
-        actLP.setUsername("Admin");
-        actLP.clickPasswordField();
-        actLP.setPassword("1221444");
-        actLP.clickLoginButton();
-        actLP.checkInvalidMessage();
+        actLP.executeInvalidLoginPassword();
     }
-
     @Test
     @Tag("Login functionality")
     @DisplayName("Cannot login with empty credentials")
-    void testInvalidLoginEmpty(){
+    void testInvalidLoginBlankFields(){
         actLP = new LoginPage(browser);
-
-        actLP.clickUsernameField();
-        actLP.setUsername("");
-        actLP.clickPasswordField();
-        actLP.setPassword("");
-        actLP.clickLoginButton();
-        actLP.checkInvalidMessage();
+        actLP.executeInvalidLoginBlankFields();
     }
 
     @Test
@@ -70,25 +43,29 @@ public class TestsLoginPage extends setupCode {
     @DisplayName("Check all fields on forgot password page")
     void testForgotPasswordLink(){
         actLP = new LoginPage(browser);
-
-        actLP.clickForgotPassLink();
-        actLP.verifiedForgotPasswordForm();
+        actLP.checkAllForgotPasswordFields();
     }
     @Test
     @Tag("Forgot password functionality")
-    @DisplayName("Reset password with valid credentials")
-    void testResetForgotPassword() throws InterruptedException {
+    @DisplayName("Check that user can cancel the operation")
+    void testCancelResetForgotPassword(){
         actLP = new LoginPage(browser);
-
-        actLP.clickForgotPassLink();
-        browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        actLP.clickForgotUsernameField();
-        actLP.setForgotUsername("Admin");
-        actLP.clickResetPasswordButton();
+        actLP.executeCancelResetForgotPassword();
     }
 
-
-
-
+    @Test
+    @Tag("Forgot password functionality")
+    @DisplayName("Reset password with valid user")
+    void testResetForgotPasswordRegisteredUser() throws InterruptedException {
+        actLP = new LoginPage(browser);
+        actLP.executeResetForgotPasswordAsRegisteredUser();
+    }
+    @Test
+    @Tag("Forgot password functionality")
+    @DisplayName("Reset password with invalid user")
+    void testResetForgotPasswordNotRegisteredUser() throws InterruptedException {
+        actLP = new LoginPage(browser);
+        actLP.executeResetForgotPasswordAsNotRegisteredeUser();
+    }
 
 }
