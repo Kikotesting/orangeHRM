@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.Select;
 
 public class MyInfoPage {
 
@@ -13,22 +14,16 @@ public class MyInfoPage {
         PageFactory.initElements(browser,this);
     }
 
-
-    /**
-     * sdgdsgsdgsd
-     * gsdgdsgsdgsd
-     *
-     */
     @FindBy(id = "btnSave")
-    WebElement menuMyInfo_EditSaveButtonPersonalDetails;
+    WebElement menuMyInfo_PersonalDetails_EditSaveButton;
 
     @FindBy(xpath = "//*[@id=\"personal_txtEmpFirstName\"]")
-    WebElement menuMyInfo_PersonalDetails_FirstName;
+    WebElement menuMyInfo_PersonalDetails_FirstNameField;
     @FindBy(xpath = "//*[@id=\"personal_txtEmpLastName\"]")
-    WebElement menuMyInfo_PersonalDetails_LastName;
-    @FindBy(xpath = "//*[@id=\"personal_optGender_1\"]")
+    WebElement menuMyInfo_PersonalDetails_LastNameField;
 
-    WebElement menuMyInfo_PersonalDetails_GenderMale;
+/*    @FindBy(xpath = "//*[@id=\"personal_optGender_1\"]")
+    WebElement menuMyInfo_PersonalDetails_GenderMale;*/
     @FindBy(xpath = "//*[@id=\"personal_optGender_2\"]")
     WebElement menuMyInfo_PersonalDetails_GenderFemale;
 
@@ -41,13 +36,12 @@ public class MyInfoPage {
     WebElement menuMyInfo_PersonalDetails_Smoker;
 
 
-
-
     @FindBy(id = "btnEditCustom")
     WebElement menuMyInfo_EditSaveButtonCustomFields;
+    @FindBy(xpath = "//*[@id=\"employee-details\"]/div[3]/div[1]/h1")
+    public WebElement HeadingCustomFields;
     @FindBy(xpath = "//*[@id=\"frmEmpCustomFields\"]/ol/li/select")
     WebElement menuMyInfo_CustomFields_BloodType;
-
     @FindBy(xpath = "//*[@id=\"btnAddAttachment\"]")
     WebElement menuMyInfo_Attachment_AddButton;
     @FindBy(xpath = "//*[@id=\"ufile\"]")
@@ -56,31 +50,53 @@ public class MyInfoPage {
     WebElement menuMyInfo_Attachment_Comment;
 
     public void clickEditButton_PersonalDetails(){
-        menuMyInfo_EditSaveButtonPersonalDetails.click();
+        menuMyInfo_PersonalDetails_EditSaveButton.click();
+    }
+    public void setFNLN_PersonalDetails(String firstname, String lastname){
+        menuMyInfo_PersonalDetails_FirstNameField.clear();
+        menuMyInfo_PersonalDetails_FirstNameField.sendKeys(firstname);
+        menuMyInfo_PersonalDetails_LastNameField.clear();
+        menuMyInfo_PersonalDetails_LastNameField.sendKeys(firstname);
+    }
+    public void clickGender(){
+        menuMyInfo_PersonalDetails_GenderFemale.click();
+    }
+    public void clickSmoker(){
+        menuMyInfo_PersonalDetails_Smoker.click();
+    }
+    public void setGenNatStat_PersonalDetails() throws InterruptedException {
+        menuMyInfo_PersonalDetails_Nationality.click();
+        Select nat = new Select(menuMyInfo_PersonalDetails_Nationality);
+        nat.selectByValue("29");
+        menuMyInfo_PersonalDetails_Nationality.click();
+        Thread.sleep(2000);
+        menuMyInfo_PersonalDetails_MaritalStatus.click();
+        Select materialStatus = new Select(menuMyInfo_PersonalDetails_MaritalStatus);
+        materialStatus.selectByValue("Married");
+        menuMyInfo_PersonalDetails_MaritalStatus.click();
     }
     public void clickSaveButton_PersonalDetails(){
-        menuMyInfo_EditSaveButtonPersonalDetails.click();
+        menuMyInfo_PersonalDetails_EditSaveButton.click();
     }
 
 
     public void clickEditButton_CustomField(){
         menuMyInfo_EditSaveButtonCustomFields.click();
     }
+    public void selectBloodType(){
+        Select bloodType = new Select(menuMyInfo_CustomFields_BloodType);
+        bloodType.selectByValue("A+");
+        menuMyInfo_CustomFields_BloodType.click();
+    }
     public void clickSaveButton_CustomField(){
         menuMyInfo_EditSaveButtonCustomFields.click();
     }
 
-    public void clickAddButton_Attachments(){
-        menuMyInfo_Attachment_AddButton.click();
-    }
-    public void clickChooseFile_Attachments(){
-        menuMyInfo_Attachment_ChooseFile.click();
-    }
+
     public void fillAttachment(){
         menuMyInfo_Attachment_AddButton.click();
         menuMyInfo_Attachment_ChooseFile.click();
-
-
+        menuMyInfo_Attachment_Comment.click();
     }
 
 }

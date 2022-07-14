@@ -2,12 +2,9 @@ package TestClasses;
 import Pages.LoginPage;
 import UtilityClasses.setupCode;
 import org.junit.jupiter.api.*;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.time.Duration;
 
 public class TestsLoginPage extends setupCode {
-    LoginPage actLP;
+    LoginPage actLP; // if you want to change variable on all places just hold shift+F6
 
     @Test
     @Tag("Login functionality")

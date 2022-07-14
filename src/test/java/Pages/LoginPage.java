@@ -60,9 +60,7 @@ public class LoginPage {
         passwordInput.clear();
         passwordInput.sendKeys(password);
     }
-    private void clickLoginButton(){
-        buttonLogin.click();
-    }
+
     private void verifyLoggedUser(){
         Assertions.assertTrue(loggedDashboardHeading.isDisplayed());
         Assertions.assertTrue(loggedPanelLegendGraph.isDisplayed());
@@ -86,7 +84,7 @@ public class LoginPage {
         setUsername("Admin");
         clickPasswordField();
         setPassword("admin123");
-        clickLoginButton();
+        buttonLogin.click();
         verifyLoggedUser();
     }
     public void executeInvalidLoginUsername(){
@@ -94,7 +92,7 @@ public class LoginPage {
         setUsername("Trendi");
         clickPasswordField();
         setPassword("admin123");
-        clickLoginButton();
+        buttonLogin.click();
         checkInvalidMessage();
     }
     public void executeInvalidLoginPassword(){
@@ -102,7 +100,7 @@ public class LoginPage {
         setUsername("Admin");
         clickPasswordField();
         setPassword("412chor");
-        clickLoginButton();
+        buttonLogin.click();
         checkInvalidMessage();
     }
     public void executeInvalidLoginBlankFields(){
@@ -110,7 +108,7 @@ public class LoginPage {
         setUsername("");
         clickPasswordField();
         setPassword("");
-        clickLoginButton();
+        buttonLogin.click();
         checkInvalidMessage();
     }
 
