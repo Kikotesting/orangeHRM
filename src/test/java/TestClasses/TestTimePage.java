@@ -7,8 +7,6 @@ import UtilityClasses.setupCode;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.time.Duration;
-
 public class TestTimePage extends setupCode {
     LoginPage actLP;
     DashboardPage actDashboard;
