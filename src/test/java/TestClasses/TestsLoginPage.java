@@ -19,6 +19,7 @@ public class TestsLoginPage extends setupCode {
     void testInvalidLoginUsername(){
         actLP = new LoginPage(browser);
         actLP.executeInvalidLoginUsername();
+        checkInvalidMessage();
     }
     @Test
     @Tag("Login functionality")
@@ -26,6 +27,7 @@ public class TestsLoginPage extends setupCode {
     void testInvalidLoginPassword(){
         actLP = new LoginPage(browser);
         actLP.executeInvalidLoginPassword();
+        checkInvalidMessage();
     }
     @Test
     @Tag("Login functionality")
@@ -33,15 +35,9 @@ public class TestsLoginPage extends setupCode {
     void testInvalidLoginBlankFields(){
         actLP = new LoginPage(browser);
         actLP.executeInvalidLoginBlankFields();
+        checkInvalidMessage();
     }
 
-    @Test
-    @Tag("Forgot password functionality")
-    @DisplayName("Check all fields on forgot password page")
-    void testForgotPasswordLink(){
-        actLP = new LoginPage(browser);
-        actLP.checkAllForgotPasswordFields();
-    }
     @Test
     @Tag("Forgot password functionality")
     @DisplayName("Check that user can cancel the operation")
@@ -49,7 +45,6 @@ public class TestsLoginPage extends setupCode {
         actLP = new LoginPage(browser);
         actLP.executeCancelResetForgotPassword();
     }
-
     @Test
     @Tag("Forgot password functionality")
     @DisplayName("Reset password with valid user")
@@ -63,6 +58,20 @@ public class TestsLoginPage extends setupCode {
     void testResetForgotPasswordNotRegisteredUser() throws InterruptedException {
         actLP = new LoginPage(browser);
         actLP.executeResetForgotPasswordAsNotRegisteredeUser();
+    }
+
+    public void checkInvalidMessage(){
+        Assertions.assertTrue(actLP.messageInvalidCredentials.isDisplayed());
+        String invalidCredentials = "Invalid credentials";
+        String emptyFields = "Username cannot be empty";
+        String actualMessage = actLP.messageInvalidCredentials.getText();
+
+        if(actualMessage == invalidCredentials){
+            System.out.println(actualMessage);
+        }else {
+            System.out.println(emptyFields);
+        }
+            Assertions.assertEquals("For testing purpose!",actualMessage);
     }
 
 }

@@ -14,11 +14,20 @@ public class DashboardPage {
 
     @FindBy(xpath = "//*[@id=\"mainMenuFirstLevelUnorderedList\"]/li[8]")
     WebElement menuDashboard;
-
     @FindBy(xpath = "//*[@id=\"menu_pim_viewMyDetails\"]")
     WebElement menuMyInfo;
+    @FindBy(xpath = "//*[@id=\"menu_time_viewTimeModule\"]")
+    WebElement menuTime;
+
+
+    public void clickMenuDashboard(){
+        menuDashboard.click();
+    }
     public void clickMenuMyInfo(){
         menuMyInfo.click();
+    }
+    public void clickMenuTime(){
+        menuTime.click();
     }
 
 

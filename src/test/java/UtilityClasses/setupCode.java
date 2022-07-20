@@ -5,12 +5,14 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.FluentWait;
+import org.openqa.selenium.support.ui.Wait;
 
 import java.time.Duration;
 
 public class setupCode {
     public WebDriver browser;
-    /*public Actions action = new Actions((browser));*/
     public JavascriptExecutor j = (JavascriptExecutor) browser;
 
 
@@ -78,6 +80,13 @@ public class setupCode {
         }else{
             System.out.println("Element is not visible");
         }
+    }
+
+    public void waitElement(WebElement element){
+        Wait wait = new FluentWait(element)
+                .withTimeout(Duration.ofSeconds(5))
+                .pollingEvery(Duration.ofSeconds(2))
+                .ignoring(Exception.class);
     }
 
 }

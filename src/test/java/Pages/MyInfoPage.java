@@ -16,38 +16,25 @@ public class MyInfoPage {
 
     @FindBy(id = "btnSave")
     WebElement menuMyInfo_PersonalDetails_EditSaveButton;
-
     @FindBy(xpath = "//*[@id=\"personal_txtEmpFirstName\"]")
     WebElement menuMyInfo_PersonalDetails_FirstNameField;
     @FindBy(xpath = "//*[@id=\"personal_txtEmpLastName\"]")
     WebElement menuMyInfo_PersonalDetails_LastNameField;
-
-/*    @FindBy(xpath = "//*[@id=\"personal_optGender_1\"]")
-    WebElement menuMyInfo_PersonalDetails_GenderMale;*/
     @FindBy(xpath = "//*[@id=\"personal_optGender_2\"]")
     WebElement menuMyInfo_PersonalDetails_GenderFemale;
-
     @FindBy(xpath = "//*[@id=\"personal_cmbNation\"]")
     WebElement menuMyInfo_PersonalDetails_Nationality;
     @FindBy(xpath = "//*[@id=\"personal_cmbMarital\"]")
     WebElement menuMyInfo_PersonalDetails_MaritalStatus;
-
     @FindBy(xpath = "//*[@id=\"personal_chkSmokeFlag\"]")
     WebElement menuMyInfo_PersonalDetails_Smoker;
-
-
     @FindBy(id = "btnEditCustom")
     WebElement menuMyInfo_EditSaveButtonCustomFields;
     @FindBy(xpath = "//*[@id=\"employee-details\"]/div[3]/div[1]/h1")
     public WebElement HeadingCustomFields;
     @FindBy(xpath = "//*[@id=\"frmEmpCustomFields\"]/ol/li/select")
     WebElement menuMyInfo_CustomFields_BloodType;
-    @FindBy(xpath = "//*[@id=\"btnAddAttachment\"]")
-    WebElement menuMyInfo_Attachment_AddButton;
-    @FindBy(xpath = "//*[@id=\"ufile\"]")
-    WebElement menuMyInfo_Attachment_ChooseFile;
-    @FindBy(xpath = "//*[@id=\"txtAttDesc\"]")
-    WebElement menuMyInfo_Attachment_Comment;
+
 
     public void clickEditButton_PersonalDetails(){
         menuMyInfo_PersonalDetails_EditSaveButton.click();
@@ -56,7 +43,7 @@ public class MyInfoPage {
         menuMyInfo_PersonalDetails_FirstNameField.clear();
         menuMyInfo_PersonalDetails_FirstNameField.sendKeys(firstname);
         menuMyInfo_PersonalDetails_LastNameField.clear();
-        menuMyInfo_PersonalDetails_LastNameField.sendKeys(firstname);
+        menuMyInfo_PersonalDetails_LastNameField.sendKeys(lastname);
     }
     public void clickGender(){
         menuMyInfo_PersonalDetails_GenderFemale.click();
@@ -78,8 +65,6 @@ public class MyInfoPage {
     public void clickSaveButton_PersonalDetails(){
         menuMyInfo_PersonalDetails_EditSaveButton.click();
     }
-
-
     public void clickEditButton_CustomField(){
         menuMyInfo_EditSaveButtonCustomFields.click();
     }
@@ -90,13 +75,6 @@ public class MyInfoPage {
     }
     public void clickSaveButton_CustomField(){
         menuMyInfo_EditSaveButtonCustomFields.click();
-    }
-
-
-    public void fillAttachment(){
-        menuMyInfo_Attachment_AddButton.click();
-        menuMyInfo_Attachment_ChooseFile.click();
-        menuMyInfo_Attachment_Comment.click();
     }
 
 }

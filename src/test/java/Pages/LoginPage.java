@@ -1,6 +1,5 @@
 package Pages;
 
-import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -22,25 +21,13 @@ public class LoginPage {
     @FindBy(id = "btnLogin")
     WebElement buttonLogin;
 
-    @FindBy(xpath = "//*[@id=\"content\"]/div/div[1]/h1")
-    WebElement loggedDashboardHeading;
-    @FindBy(xpath = "//*[@id=\"panel_resizable_1_0\"]/legend")
-    WebElement loggedPanelLegendGraph;
-    @FindBy(xpath = "//*[@id=\"welcome\"]")
-    WebElement loggedWelcomeUserNav;
-
     @FindBy(xpath = "//*[@id=\"spanMessage\"]")
-    WebElement messageInvalidCredentials;
+    public WebElement messageInvalidCredentials;
+
     @FindBy(xpath = "//*[@id=\"forgotPasswordLink\"]/a")
-    WebElement forgotPass;
-    @FindBy(xpath = "//*[@id=\"content\"]/div[1]/div[2]/h1")
-    WebElement forgotPass_Heading;
-    @FindBy(xpath = "//*[@id=\"content\"]/div[1]/div[3]/div")
-    WebElement forgotPass_InfoText;
-    @FindBy(id = "securityAuthentication_userName")
-    WebElement forgotPass_UsernameLabel;
+    WebElement forgotPassword;
     @FindBy(xpath = "//*[@id=\"securityAuthentication_userName\"]")
-    WebElement forgotPass_UsernameField;
+    public WebElement forgotPassword_UsernameField;
     @FindBy(xpath = "//*[@id=\"btnSearchValues\"]")
     WebElement forgotPass_ResetPasswordButton;
     @FindBy(id = "btnCancel")
@@ -61,31 +48,12 @@ public class LoginPage {
         passwordInput.sendKeys(password);
     }
 
-    private void verifyLoggedUser(){
-        Assertions.assertTrue(loggedDashboardHeading.isDisplayed());
-        Assertions.assertTrue(loggedPanelLegendGraph.isDisplayed());
-        Assertions.assertTrue(loggedWelcomeUserNav.isDisplayed());
-    }
-    public void checkInvalidMessage(){
-        Assertions.assertTrue(messageInvalidCredentials.isDisplayed());
-        String invalidCredentials = "Invalid credentials";
-        String emptyFields = "Username cannot be empty";
-        String actualMessage = messageInvalidCredentials.getText();
-
-        if(actualMessage == invalidCredentials){
-            System.out.println(actualMessage);
-        }else {
-            System.out.println(emptyFields);
-        }
-        Assertions.assertEquals("For testing purpose!",actualMessage);
-    }
     public void executeValidLogin(){
         clickUsernameField();
         setUsername("Admin");
         clickPasswordField();
         setPassword("admin123");
         buttonLogin.click();
-        verifyLoggedUser();
     }
     public void executeInvalidLoginUsername(){
         clickUsernameField();
@@ -93,7 +61,6 @@ public class LoginPage {
         clickPasswordField();
         setPassword("admin123");
         buttonLogin.click();
-        checkInvalidMessage();
     }
     public void executeInvalidLoginPassword(){
         clickUsernameField();
@@ -101,7 +68,6 @@ public class LoginPage {
         clickPasswordField();
         setPassword("412chor");
         buttonLogin.click();
-        checkInvalidMessage();
     }
     public void executeInvalidLoginBlankFields(){
         clickUsernameField();
@@ -109,27 +75,17 @@ public class LoginPage {
         clickPasswordField();
         setPassword("");
         buttonLogin.click();
-        checkInvalidMessage();
     }
-
 
     private void clickForgotPassLink(){
-        forgotPass.click();
+        forgotPassword.click();
     }
-    public void verifyForgotPasswordForm(){
-        Assertions.assertTrue(forgotPass_Heading.isDisplayed());
-        Assertions.assertTrue(forgotPass_InfoText.isDisplayed());
-        Assertions.assertTrue(forgotPass_UsernameLabel.isDisplayed());
-        Assertions.assertTrue(forgotPass_UsernameField.isDisplayed());
-        System.out.println("ForgotPassword Form is available to populate text!");
-    }
-
     private void clickForgotUsernameField(){
-        forgotPass_UsernameField.click();
+        forgotPassword_UsernameField.click();
     }
     private void setForgotUsername(String forgotUsername){
-        forgotPass_UsernameField.clear();
-        forgotPass_UsernameField.sendKeys(forgotUsername);
+        forgotPassword_UsernameField.clear();
+        forgotPassword_UsernameField.sendKeys(forgotUsername);
     }
     private void clickResetPasswordButton(){
         forgotPass_ResetPasswordButton.click();
@@ -138,10 +94,7 @@ public class LoginPage {
         forgotPass_CancelButton.click();
     }
 
-    public void checkAllForgotPasswordFields(){
-        clickForgotPassLink();
-        verifyForgotPasswordForm();
-    }
+
     public void executeCancelResetForgotPassword(){
         clickForgotPassLink();
         browser.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
